@@ -1,8 +1,8 @@
 // YraGenerator.ts
 import fs from 'fs';
 import path from 'path';
-import { readSchemaFile, parseCKDBSchema } from './schemaParser.ts';
-import { generateImportStatement } from "./importGenerator.ts";
+import { readSchemaFile, parseCKDBSchema } from './schemaParser';
+import { generateImportStatement } from "./importGenerator";
 
 // Function to generate the complete TypeScript definition file
 function generateTypeScriptDefinitions(schemaFilePath: string, outputPath: string): void {
@@ -36,8 +36,10 @@ function generateTypeScriptDefinitions(schemaFilePath: string, outputPath: strin
     console.log(`TypeScript definitions saved to: ${outputPath}`);
 }
 
-export function yraGenerateTypes(filePath: string) {
-    const schemaPath = path.join(process.cwd(), filePath);
-    const outputTsPath = path.join(__dirname, 'yraTypes.ts');
+function yraGenerateTypes(pathToSchema: string, to: string) {
+    const schemaPath = path.join(process.cwd(), pathToSchema);
+    const outputTsPath = path.join(process.cwd(), to);
     generateTypeScriptDefinitions(schemaPath, outputTsPath);
 }
+
+export default yraGenerateTypes;

@@ -1,5 +1,5 @@
 // ZoneManager.ts
-import CKToolClient from '../CKToolClient.ts';
+import CKToolClient from '../CKToolClient';
 import {
     CKDBCreateZoneRequestBody,
     CKDBZoneResponse,

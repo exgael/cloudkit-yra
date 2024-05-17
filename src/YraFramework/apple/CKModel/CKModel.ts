@@ -1,29 +1,56 @@
-// CKModel.ts
+// CKModel
 import {CKDBRecord} from "@apple/cktool.api.database/dist/types/models/CKDBRecordCodec";
 import {CKDBRecordFieldValue} from "@apple/cktool.api.database/dist/types/models/CKDBRecordFieldValueCodec";
-import CKRecordBuilder from "../Builders/CKRecordBuilder.ts";
-import {PartialCKDBRecord} from "./PartialCKDBRecord.ts";
-import {CKDBQueryFilter, CKEnvironment, CKDatabaseType, CKDBRecordResponse} from "@apple/cktool.database";
+import CKRecordBuilder from "../Builders/CKRecordBuilder";
+import {PartialCKDBRecord} from "./PartialCKDBRecord";
+import {CKEnvironment, CKDatabaseType} from "@apple/cktool.database";
 import {CKDBQuerySort} from "@apple/cktool.api.database/dist/types/models/CKDBQuerySortCodec";
-import {IRecordManager, QueryFilter} from "../YraAPI/IRecordManager.ts";
-import YraAPI from "../YraAPI/YraAPI.ts";
-import config from "../../../../config";
+import {IRecordManager, QueryFilter} from "../YraAPI/IRecordManager";
+import YraAPI from "../YraAPI/YraAPI";
 
 export type CKDBFields = Record<string, CKDBRecordFieldValue>;
+
+interface Config {
+    containerId: string;
+    environment: string;
+    teamId: string;
+    managementToken: string;
+    userTokenAuth: string;
+    keyId: string;
+    privateKeyPath?: string;
+}
 
 export class CKModel<F extends CKDBFields = CKDBFields> {
     #record: CKDBRecord<F>
 
-    static #api: IRecordManager = new YraAPI({
-        containerId: config.containerId,
-        environment: config.environment === "DEVELOPMENT" ? CKEnvironment.DEVELOPMENT : CKEnvironment.PRODUCTION,
-        databaseType: CKDatabaseType.PUBLIC,
-        teamId: config.teamId,
-        managementToken: config.managementToken,
-        userTokenAuth: config.userTokenAuth,
-        keyId: config.keyId,
-        privateKeyPath: `${process.cwd()}/eckey.pem`
-    }).ckWebServiceAPI;
+    static #api: IRecordManager;
+
+    /**
+     * // Usage example:
+     * ```ts
+     * CKModel.setConfig({
+     *     containerId: 'your-container-id',
+     *     environment: 'DEVELOPMENT',
+     *     teamId: 'your-team-id',
+     *     managementToken: 'your-management-token',
+     *     userTokenAuth: 'your-user-token-auth',
+     *     keyId: 'your-key-id'
+     * });
+     * ```
+     * @param config
+     */
+    static setConfig(config: Config) {
+        CKModel.#api = new YraAPI({
+            containerId: config.containerId,
+            environment: config.environment === "DEVELOPMENT" ? CKEnvironment.DEVELOPMENT : CKEnvironment.PRODUCTION,
+            databaseType: CKDatabaseType.PUBLIC,
+            teamId: config.teamId,
+            managementToken: config.managementToken,
+            userTokenAuth: config.userTokenAuth,
+            keyId: config.keyId,
+            privateKeyPath: config.privateKeyPath || `${process.cwd()}/eckey.pem`
+        }).ckWebServiceAPI;
+    }
 
     constructor(record: CKDBRecord<F>) {
         this.#record = record;

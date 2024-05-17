@@ -2,7 +2,7 @@ import fs from 'fs';
 import {
     CKDBFieldType, CKDBSortableFieldType, fieldTypeConfig,
     generateQueryMethods, generateSortMethods,
-} from "./modelGenerator.ts";
+} from "./modelGenerator";
 import {CKDBQuerySortOrder} from "@apple/cktool.api.database/dist/types/models/CKDBQuerySortOrderCodec";
 
 export function readSchemaFile(schemaFilePath: string): string | null {
@@ -26,10 +26,10 @@ export function parseCKDBSchema(fileContent: string): string | null {
     let modelClassDefinitions = '';
 
     while ((match = recordTypeRegex.exec(fileContent)) !== null) {
-        const typeName = match[1];
+        const typeName = match[1]!;
         if (typeName === 'Users') continue;  // Optionally skip certain types
 
-        const fieldsBlock = match[2];
+        const fieldsBlock = match[2]!;
         const { tsTypeDefinitions, yraTypeDefinitions, ckdbTypeDefinitions, modelDefinitions } = parseFields(fieldsBlock, typeName);
 
         if (ckdbTypeDefinitions) {
@@ -75,8 +75,8 @@ export function parseFields(
     let sortMethods = '';
 
     while ((fieldMatch = fieldRegex.exec(fieldsBlock)) !== null) {
-        const fieldName = fieldMatch[1];
-        const fieldType = fieldMatch[2];
+        const fieldName = fieldMatch[1]!;
+        const fieldType = fieldMatch[2]!;
         const listType = fieldMatch[3];
         const isQueryable = fieldMatch[4] ? 'true' : 'false';
         const isSortable = fieldMatch[5] ? 'true' : 'false';

@@ -1,5 +1,5 @@
 import https from "https"
-import {SignService} from "./sign.ts";
+import {SignService} from "./sign";
 
 export class RequestService {
     readonly #hostname = "api.apple-cloudkit.com";

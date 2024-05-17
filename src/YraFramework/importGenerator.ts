@@ -30,7 +30,7 @@ export function generateImportStatement(input: string): string {
     let match;
     while ((match = regex.exec(input)) !== null) {
         // Check if the matched type is in the list of all types
-        if (allTypes.includes(match[1])) {
+        if (allTypes.includes(match[1]!)) {
             foundTypes.add(match[0]); // Add the full type name to the set
             foundTypes.add(`${creationTypePrefix}${match[1]}`); // Add the corresponding creation function
         }

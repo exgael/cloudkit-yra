@@ -1,6 +1,6 @@
 import {
     PartialCKDBRecord
-} from "../CKModel/PartialCKDBRecord.ts";
+} from "../CKModel/PartialCKDBRecord";
 import {
     CKDBLookupRecordsResponse,
     CKDBPagedBatchDeleteResponse,

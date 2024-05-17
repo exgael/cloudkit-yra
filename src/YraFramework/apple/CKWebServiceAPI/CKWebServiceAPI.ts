@@ -1,11 +1,11 @@
 import fs from 'fs'
-import {SignService} from "./sign.ts";
-import {RequestService} from "./request.ts";
-import {UrlBuilder} from "./url.ts";
+import {SignService} from "./sign";
+import {RequestService} from "./request";
+import {UrlBuilder} from "./url";
 import {CKDatabaseType, CKDBQuerySortOrder, CKDBRecordResponse, CKEnvironment, toInt64} from "@apple/cktool.database";
-import {CKDBFields} from "../CKModel/CKModel.ts";
+import {CKDBFields} from "../CKModel/CKModel";
 import {CKDBRecord} from "@apple/cktool.api.database/dist/types/models/CKDBRecordCodec";
-import {CKWebServiceRecordResponse} from "./CKWebServiceRecordResponse.ts";
+import {CKWebServiceRecordResponse} from "./CKWebServiceRecordResponse";
 import {
     CreateRecordParams,
     CreateRecordResponse,
@@ -20,7 +20,7 @@ import {
     QueryRecordsResponse,
     UpdateRecordParams,
     UpdateRecordResponse
-} from "../YraAPI/IRecordManager.ts";
+} from "../YraAPI/IRecordManager";
 
 enum OperationType  {
     CREATE = "create",

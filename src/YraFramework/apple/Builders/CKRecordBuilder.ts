@@ -17,7 +17,7 @@ import {
     toInt64, createCKDBRecordFieldTimestampListValue
 } from "@apple/cktool.database";
 
-import {PartialCKDBRecord} from "../CKModel/PartialCKDBRecord.ts";
+import {PartialCKDBRecord} from "../CKModel/PartialCKDBRecord";
 
 const typeToFieldFunctionMap: Record<string, Function> = {
     'string': createCKDBRecordFieldStringValue,

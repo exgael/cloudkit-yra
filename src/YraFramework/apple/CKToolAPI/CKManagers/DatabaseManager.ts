@@ -1,5 +1,5 @@
 // DatabaseManager.ts
-import CKToolClient from '../CKToolClient.ts';
+import CKToolClient from '../CKToolClient';
 import {CKDBValidateSchemaResponse, ContainersResponse, GetContainersParams} from "@apple/cktool.database";
 
 class DatabaseManager {

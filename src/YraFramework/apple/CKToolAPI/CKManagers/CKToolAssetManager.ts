@@ -1,4 +1,4 @@
-import CKToolClient from "../CKToolClient.ts";
+import CKToolClient from "../CKToolClient";
 import {CKDBAssetUploadUrlResponse, CKDBCreateAssetUploadUrlRequestBody} from "@apple/cktool.database";
 
 class CKToolAssetManager {

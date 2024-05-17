@@ -1,14 +1,14 @@
-// CloudKitAPI.ts
-import CKToolClient, {CKToolClientInitParams} from './CKToolClient.ts';
-import CKToolRecordManager from './CKManagers/CKToolRecordManager.ts';
-import ZoneManager from "./CKManagers/ZoneManager.ts";
-import DatabaseManager from "./CKManagers/DatabaseManager.ts";
+// CloudKitAPI
+import CKToolClient, {CKToolClientInitParams} from './CKToolClient';
+import CKToolRecordManager from './CKManagers/CKToolRecordManager';
+import ZoneManager from "./CKManagers/ZoneManager";
+import DatabaseManager from "./CKManagers/DatabaseManager";
 
 // For importation and exportation
 import fs from "fs/promises";
 import { File } from "@apple/cktool.target.nodejs";
 import path from "path";
-import CKToolAssetManager from "./CKManagers/CKToolAssetManager.ts";
+import CKToolAssetManager from "./CKManagers/CKToolAssetManager";
 
 class CKToolAPI {
     private readonly client: CKToolClient;

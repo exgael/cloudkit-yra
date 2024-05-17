@@ -1,3 +1,3 @@
 // Export Types
 
-export { yraGenerateTypes } from './YraFramework/YraGenerator';
+export { default as yraGenerateTypes } from './YraFramework/YraGenerator';

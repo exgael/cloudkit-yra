@@ -1,5 +1,5 @@
 // RecordManager.ts
-import CKToolClient from '../CKToolClient.ts';
+import CKToolClient from '../CKToolClient';
 import {
     CKDBRecordFieldValue,
     CKDBRecordResponse,
@@ -26,7 +26,7 @@ import {
     QueryRecordsResponse,
     UpdateRecordParams,
     UpdateRecordResponse
-} from "../../YraAPI/IRecordManager.ts";
+} from "../../YraAPI/IRecordManager";
 
 class CKToolRecordManager implements IRecordManager {
     private client: CKToolClient;

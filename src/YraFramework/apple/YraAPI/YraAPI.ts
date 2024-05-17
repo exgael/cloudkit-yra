@@ -1,7 +1,7 @@
-import CKToolAPI from "../CKToolAPI/CKToolAPI.ts";
-import {CKWebServiceAPI, CKWebServiceInitParams} from "../CKWebServiceAPI/CKWebServiceAPI.ts";
+import CKToolAPI from "../CKToolAPI/CKToolAPI";
+import {CKWebServiceAPI, CKWebServiceInitParams} from "../CKWebServiceAPI/CKWebServiceAPI";
 import {CKDatabaseType, CKEnvironment} from "@apple/cktool.database";
-import {CKToolClientInitParams} from "../CKToolAPI/CKToolClient.ts";
+import {CKToolClientInitParams} from "../CKToolAPI/CKToolClient";
 
 export interface YraInitParams {
 
