@@ -45,6 +45,27 @@ const outputPath = 'path/to/output/types.ts';
 yraGenerateTypes(schemaFilePath, outputPath);
 ```
 
+From the example folder, you can use generated TypeScript definitions to interact with CloudKit database models.
+
+```ts
+// Create a new User object ( static method )
+let userModel = await UserModel.create({ /* User object */ })
+
+// Query based on queryable and sortable fields ( static method )
+let userModels = await UserModel.query()
+    .allTimeStarsGreaterThan(100) // Queryable field
+    .experienceAscending() // Sortable field
+    .displayNameContainsAllTokens(["John", "Doe"])
+    .execute()
+
+// Update the User object ( instance )
+userModel.fields.experience.value = 100
+await userModel.save()
+
+// Delete the User object ( instance )
+await userModel.delete()
+```
+
 ## Functions
 
 ### generateTypeScriptDefinitions
