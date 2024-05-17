@@ -1,0 +1,184 @@
+DEFINE SCHEMA
+
+    RECORD TYPE Achievement (
+        "___createTime"      TIMESTAMP,
+        "___createdBy"       REFERENCE,
+        "___etag"            STRING,
+        "___modTime"         TIMESTAMP,
+        "___modifiedBy"      REFERENCE,
+        "___recordID"        REFERENCE QUERYABLE,
+        achievementId        STRING QUERYABLE,
+        displayName          STRING QUERYABLE,
+        earnedDescription    STRING,
+        imageAsset           ASSET,
+        points               INT64,
+        preEarnedDescription STRING,
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Friendship (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        friend1         REFERENCE QUERYABLE,
+        friend2         REFERENCE QUERYABLE,
+        status          STRING QUERYABLE,
+        GRANT READ, WRITE TO "_creator"
+    );
+
+    RECORD TYPE OneVOneMatch (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        player1         REFERENCE QUERYABLE,
+        player1Score    INT64,
+        player2         REFERENCE QUERYABLE,
+        player2Score    INT64,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE PlayerSeason (
+        "___createTime"        TIMESTAMP,
+        "___createdBy"         REFERENCE,
+        "___etag"              STRING,
+        "___modTime"           TIMESTAMP,
+        "___modifiedBy"        REFERENCE,
+        "___recordID"          REFERENCE QUERYABLE,
+        eloRating              INT64 QUERYABLE SORTABLE,
+        placementMatchesPlayed INT64,
+        rank                   STRING,
+        season                 REFERENCE QUERYABLE,
+        user                   REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Season (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        endDate         TIMESTAMP,
+        name            STRING,
+        startDate       TIMESTAMP,
+        state           STRING,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE TestRecordFields (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        myAsset         ASSET,
+        myAssetL        LIST<ASSET>,
+        myBytes         BYTES,
+        myBytesL        LIST<BYTES>,
+        myDateTime      TIMESTAMP,
+        myDateTimeL     LIST<TIMESTAMP>,
+        myDouble        DOUBLE,
+        myDoubleL       LIST<DOUBLE>,
+        myInt64         INT64,
+        myInt64L        LIST<INT64>,
+        myLoc           LOCATION,
+        myLocL          LIST<LOCATION>,
+        myRef           REFERENCE,
+        myRefL          LIST<REFERENCE>,
+        myString        STRING,
+        myStringL       LIST<STRING>,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE TwoVTwoMatch (
+        "___createTime"   TIMESTAMP,
+        "___createdBy"    REFERENCE,
+        "___etag"         STRING,
+        "___modTime"      TIMESTAMP,
+        "___modifiedBy"   REFERENCE,
+        "___recordID"     REFERENCE QUERYABLE,
+        team1Player1      REFERENCE QUERYABLE,
+        team1Player1Score INT64,
+        team1Player2      REFERENCE QUERYABLE,
+        team1Player2Score INT64,
+        team2Player1      REFERENCE QUERYABLE,
+        team2Player1Score INT64,
+        team2Player2      REFERENCE QUERYABLE,
+        team2Player2Score INT64,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE User (
+        "___createTime"     TIMESTAMP,
+        "___createdBy"      REFERENCE,
+        "___etag"           STRING,
+        "___modTime"        TIMESTAMP,
+        "___modifiedBy"     REFERENCE,
+        "___recordID"       REFERENCE QUERYABLE,
+        accent              STRING,
+        achievementsPoints  INT64,
+        allTimeStars        INT64 QUERYABLE SORTABLE,
+        avatar              STRING,
+        avatarFrame         STRING,
+        country             STRING,
+        currentStars        INT64 SORTABLE,
+        defaultAvatar       STRING,
+        defaultColor        STRING,
+        displayName         STRING QUERYABLE,
+        experience          INT64 SORTABLE,
+        isSubscribed        INT64,
+        primaryColor        STRING,
+        profileEffect       STRING,
+        soloMatch           INT64,
+        soloWin             INT64,
+        subscriptionEndDate TIMESTAMP,
+        teamMatch           INT64,
+        teamWin             INT64,
+        title               STRING,
+        userID              STRING QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT CREATE TO "_icloud",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE UserAchievement (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        achievement     REFERENCE QUERYABLE,
+        completed       INT64,
+        completedDate   TIMESTAMP,
+        progress        INT64,
+        user            REFERENCE QUERYABLE,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );
+
+    RECORD TYPE Users (
+        "___createTime" TIMESTAMP,
+        "___createdBy"  REFERENCE,
+        "___etag"       STRING,
+        "___modTime"    TIMESTAMP,
+        "___modifiedBy" REFERENCE,
+        "___recordID"   REFERENCE QUERYABLE,
+        roles           LIST<INT64>,
+        GRANT WRITE TO "_creator",
+        GRANT READ TO "_world"
+    );

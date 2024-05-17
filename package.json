@@ -1,0 +1,29 @@
+{
+  "name": "cloudkit-yra",
+  "version": "1.0.0",
+  "description": "CloudKit YRA",
+  "author": "YRA",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/exgael/YraCK.git\n"
+  },
+  "module": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "bun build --target=node ./src/index.ts --outfile=dist/index.js && bun run build:declaration",
+    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json",
+    "postbuild": "rimraf tsconfig.types.tsbuildinfo"
+  },
+  "devDependencies": {
+    "bun-types": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "files": [
+    "dist/*.js",
+    "dist/*.d.ts"
+  ]
+}
