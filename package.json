@@ -13,7 +13,7 @@
   "version": "0.0.13",
   "description": "CloudKit YRA",
   "scripts": {
-    "build": "tsup src/index.ts --minify --format cjs,esm --dts --out-dir dist",
+    "build": "tsup src/index.ts --format cjs,esm --dts --out-dir dist",
     "lint": "tsc"
   },
   "dependencies": {
