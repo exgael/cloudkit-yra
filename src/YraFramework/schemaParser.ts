@@ -1,9 +1,8 @@
 import fs from 'fs';
 import {
-    CKDBFieldType, CKDBSortableFieldType, fieldTypeConfig,
+    CKDBFieldType, CKDBSortableFieldType,
     generateQueryMethods, generateSortMethods,
 } from "./modelGenerator";
-import {CKDBQuerySortOrder} from "@apple/cktool.api.database/dist/types/models/CKDBQuerySortOrderCodec";
 
 export function readSchemaFile(schemaFilePath: string): string | null {
     try {
