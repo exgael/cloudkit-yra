@@ -23,7 +23,8 @@
     "@types/node": "^20.12.12"
   },
   "devDependencies": {
-    "tsup": "^8.0.2"
+    "tsup": "^8.0.2",
+    "typescript": "^5.4.5"
   },
   "peerDependencies": {
     "typescript": "^5.0.0"
