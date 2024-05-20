@@ -1,5 +1,17 @@
 # cloudkit-yra
 
+## 0.2.1
+
+### Patch Changes
+
+- ran npm pkg fix
+
+## 0.2.0
+
+### Minor Changes
+
+- bumping version
+
 ## 0.1.0
 
 ### Minor Changes
