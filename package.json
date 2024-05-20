@@ -20,7 +20,7 @@
   "scripts": {
     "build": "tsup",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "tsc --noEmit --skipLibCheck --project tsconfig.json --exclude '**/example.ts'"
+    "lint": "tsc"
   },
   "devDependencies": {
     "@changesets/cli": "^2.27.3",
