@@ -1,6 +1,9 @@
 {
   "name": "cloudkit-yra",
   "author": "Benoît Barbier",
+  "publishConfig": {
+    "access": "public"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/exgael/cloudkit-yra.git"
@@ -10,7 +13,7 @@
     "yra"
   ],
   "license": "MIT",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

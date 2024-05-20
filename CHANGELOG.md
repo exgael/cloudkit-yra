@@ -1,5 +1,11 @@
 # cloudkit-yra
 
+## 0.2.2
+
+### Patch Changes
+
+- adding publishConfig to package.json
+
 ## 0.2.1
 
 ### Patch Changes
