@@ -50,7 +50,7 @@ export function generateImportStatement(input: string): string {
             `\n`+
             `import {\n`+
             `    CKModel\n` +
-            `} from "./apple/CKModel/CKModel";` +
+            `} from "cloudkit-yra";` +
             `\n`+
             `import {\n`+
             `    ConvertibleToCKDBAsset\n` +
@@ -61,24 +61,3 @@ export function generateImportStatement(input: string): string {
         return "No types to import.";
     }
 }
-
-// // Example usage:
-// const inputString = `export type CKDBSeason = {
-//     endDate: CKDBRecordFieldTimestampValue & { queryable: false, sortable: false };
-//     name: CKDBRecordFieldStringValue & { queryable: false, sortable: false };
-//     startDate: CKDBRecordFieldTimestampValue & { queryable: false, sortable: false };
-//     state: CKDBRecordFieldStringValue & { queryable: false, sortable: false };
-// };
-//
-// export type CKDBTwoVTwoMatch = {
-//     team1Player1: CKDBRecordFieldReferenceValue & { queryable: true, sortable: false };
-//     team1Player1Score: CKDBRecordFieldInt64Value & { queryable: false, sortable: false };
-//     team1Player2: CKDBRecordFieldReferenceValue & { queryable: true, sortable: false };
-//     team1Player2Score: CKDBRecordFieldInt64Value & { queryable: false, sortable: false };
-//     team2Player1: CKDBRecordFieldReferenceValue & { queryable: true, sortable: false };
-//     team2Player1Score: CKDBRecordFieldInt64Value & { queryable: false, sortable: false };
-//     team2Player2: CKDBRecordFieldReferenceValue & { queryable: true, sortable: false };
-//     team2Player2Score: CKDBRecordFieldInt64Value & { queryable: false, sortable: false };
-// };`;
-//
-// console.log(generateImportStatement(inputString));
