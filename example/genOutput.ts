@@ -40,11 +40,11 @@ import {
 
 import {
     CKModel
-} from "./apple/CKModel/CKModel";
+} from "../src/YraFramework/apple/CKModel/CKModel";
 import {
     ConvertibleToCKDBAsset
 } from "@apple/cktool.database/dist/types/field-values/functions/utils";
-import {QueryFilter} from "./apple/YraAPI/IRecordManager";
+import {QueryFilter} from "../src/YraFramework/apple/YraAPI/IRecordManager";
 
 
 export type CKDBAchievement = {
