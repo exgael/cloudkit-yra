@@ -25,7 +25,7 @@ const typeToFieldFunctionMap: Record<string, Function> = {
     'Date': createCKDBRecordFieldTimestampValue,
     'string[]': createCKDBRecordFieldStringListValue,
     'number[]': createCKDBRecordFieldInt64ListValue,
-    'Date[]': createCKDBRecordFieldTimestampListValue, // Assume this function exists
+    'Date[]': createCKDBRecordFieldTimestampListValue,
 };
 
 class CKRecordBuilder<T extends Partial<PartialCKDBRecord>> {

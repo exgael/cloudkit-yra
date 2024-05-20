@@ -20,7 +20,7 @@ function generateTypeScriptDefinitions(schemaFilePath: string, outputPath: strin
         return;
     }
 
-    // TypeScript imports from CKTool database
+    // TypeScript imports
     let tsImports = generateImportStatement(tsDefinitions);
 
     if (!tsImports) {
