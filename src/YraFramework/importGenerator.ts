@@ -56,7 +56,7 @@ export function generateImportStatement(input: string): string {
             `    ConvertibleToCKDBAsset\n` +
             `} from "@apple/cktool.database/dist/types/field-values/functions/utils";` +
             `\n`+
-            `import {QueryFilter} from from "cloudkit-yra";`;
+            `import {QueryFilter} from "cloudkit-yra";`;
     } else {
         return "No types to import.";
     }
