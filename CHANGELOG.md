@@ -1,5 +1,11 @@
 # cloudkit-yra
 
+## 0.3.1
+
+### Patch Changes
+
+- Queryfilter now correctly import to generated types
+
 ## 0.3.0
 
 ### Minor Changes
