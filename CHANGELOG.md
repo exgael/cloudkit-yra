@@ -1,5 +1,11 @@
 # cloudkit-yra
 
+## 0.3.2
+
+### Patch Changes
+
+- removed duplicated keyword
+
 ## 0.3.1
 
 ### Patch Changes
