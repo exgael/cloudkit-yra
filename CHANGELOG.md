@@ -4,7 +4,7 @@
 
 ### Patch Changes
 
-- 321c834: Specializing to PromiseAPI for now
+- export apple lib
 
 ## 0.3.2
 
