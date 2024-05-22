@@ -22,6 +22,8 @@
   ],
   "scripts": {
     "build": "tsup",
+    "addChange": "npx changeset add",
+    "version": "npx changeset version",
     "release": "npm run build && changeset publish",
     "test": "echo \"Error: no test specified\" && exit 1",
     "lint": "tsc"
