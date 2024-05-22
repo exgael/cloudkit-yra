@@ -8,15 +8,6 @@ Yra Generator is a TypeScript utility for generating TypeScript definitions from
 
 - [Installation](#installation)
 - [Usage](#usage)
-- [Functions](#functions)
-  - [generateTypeScriptDefinitions](#generateTypeScriptDefinitions)
-  - [yraGenerateTypes](#yraGenerateTypes)
-  - [readSchemaFile](#readSchemaFile)
-  - [parseCKDBSchema](#parseCKDBSchema)
-  - [parseFields](#parseFields)
-  - [mapSchemaTypeToCKDBFieldType](#mapSchemaTypeToCKDBFieldType)
-  - [mapSchemaTypeToUsageType](#mapSchemaTypeToUsageType)
-  - [generateImportStatement](#generateImportStatement)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -25,7 +16,7 @@ Yra Generator is a TypeScript utility for generating TypeScript definitions from
 Install the required packages using npm or yarn:
 
 ```bash
-npm install
+npm install cloudkit-yra
 ```
 
 ## Usage
@@ -35,7 +26,7 @@ To generate TypeScript definitions, use the `yraGenerateTypes` function. Provide
 Example usage:
 
 ```ts
-import yraGenerateTypes from './YraGenerator';
+// To generate TypeScript definitions
 
 // Define paths
 const schemaFilePath = 'path/to/your/schema/file';
@@ -47,7 +38,31 @@ yraGenerateTypes(schemaFilePath, outputPath);
 
 From the example folder, you can use generated TypeScript definitions to interact with CloudKit database models.
 
+To set up the necessary configuration for the CloudKit API, use the `YraAPI` class. Provide the required parameters, such as the container ID, database type, environment, management token, team ID, and user token authentication.
+
+Example usage:
 ```ts
+import { YraAPI, yraGenerateTypes } from "cloudkit-yra";
+import apple from "@apple/cktool.api.base";
+
+// It will handle the necessary configuration for the CloudKit API
+let api = new YraAPI({
+    containerId: "23232323",
+    databaseType: apple.CKDatabaseType.PUBLIC,
+    environment: apple.CKEnvironment.DEVELOPMENT,
+    managementToken: "23232323",
+    teamId: "23232323",
+    userTokenAuth: "23232323"
+});
+```
+
+Here is an example of how to use the generated TypeScript definitions to interact with CloudKit database models:
+
+```ts
+
+// Import the generated TypeScript definitions
+import { UserModel } from "example/genOutput";
+
 // Create a new User object ( static method )
 let userModel = await UserModel.create({ /* User object */ })
 
@@ -64,135 +79,6 @@ await userModel.save()
 
 // Delete the User object ( instance )
 await userModel.delete()
-```
-
-## Functions
-
-### generateTypeScriptDefinitions
-
-Generates TypeScript definitions from a CKTool schema file.
-
-**Parameters:**
-- `schemaFilePath`: string - The path to the schema file.
-- `outputPath`: string - The path to save the generated TypeScript definitions.
-
-**Usage:**
-
-```ts
-generateTypeScriptDefinitions('schema.ckdb', 'output.ts');
-```
-
-### yraGenerateTypes
-
-Wrapper function that calls `generateTypeScriptDefinitions` with the provided schema file and output paths.
-
-**Parameters:**
-- `pathToSchema`: string - The path to the schema file relative to the project root.
-- `to`: string - The path to save the generated TypeScript definitions relative to the project root.
-
-**Usage:**
-
-```ts
-yraGenerateTypes('schema.ckdb', 'output.ts');
-```
-
-### readSchemaFile
-
-Reads the content of a schema file.
-
-**Parameters:**
-- `schemaFilePath`: string - The path to the schema file.
-
-**Returns:**
-- `string | null` - The content of the schema file or `null` if an error occurs.
-
-**Usage:**
-
-```ts
-const fileContent = readSchemaFile('schema.ckdb');
-```
-
-### parseCKDBSchema
-
-Parses the content of a CKTool schema file to extract TypeScript definitions.
-
-**Parameters:**
-- `fileContent`: string - The content of the schema file.
-
-**Returns:**
-- `string | null` - The generated TypeScript definitions or `null` if parsing fails.
-
-**Usage:**
-
-```ts
-const tsDefinitions = parseCKDBSchema(fileContent);
-```
-
-### parseFields
-
-Parses the fields of a schema type to generate TypeScript, CKDB, and Yra definitions.
-
-**Parameters:**
-- `fieldsBlock`: string - The block of fields to parse.
-- `typeName`: string - The name of the type.
-
-**Returns:**
-- An object containing TypeScript, CKDB, Yra type definitions, and model definitions.
-
-**Usage:**
-
-```ts
-const { tsTypeDefinitions, yraTypeDefinitions, ckdbTypeDefinitions, modelDefinitions } = parseFields(fieldsBlock, 'ExampleType');
-```
-
-### mapSchemaTypeToCKDBFieldType
-
-Maps a schema field type to a CKDB field type.
-
-**Parameters:**
-- `fieldType`: string - The field type from the schema.
-- `listType`: string (optional) - The list type if the field is a list.
-
-**Returns:**
-- `string` - The CKDB field type.
-
-**Usage:**
-
-```ts
-const ckdbFieldType = mapSchemaTypeToCKDBFieldType('STRING');
-```
-
-### mapSchemaTypeToUsageType
-
-Maps a schema field type to a TypeScript type.
-
-**Parameters:**
-- `fieldType`: string - The field type from the schema.
-- `listType`: string (optional) - The list type if the field is a list.
-
-**Returns:**
-- `string` - The TypeScript type.
-
-**Usage:**
-
-```ts
-const tsFieldType = mapSchemaTypeToUsageType('STRING');
-```
-
-### generateImportStatement
-
-Generates an import statement for the necessary types extracted from the input string.
-
-**Parameters:**
-- `input`: string - The input string to search for types.
-
-**Returns:**
-- `string` - The generated import statement.
-
-**Usage:**
-
-```ts
-const importStatement = generateImportStatement(tsDefinitions);
 ```
 
 ## Contributing
