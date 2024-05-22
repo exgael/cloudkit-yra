@@ -1,7 +1,7 @@
 import CKToolAPI from "../CKToolAPI/CKToolAPI";
-import {CKWebServiceAPI, CKWebServiceInitParams} from "../CKWebServiceAPI/CKWebServiceAPI";
 import {CKDatabaseType, CKEnvironment} from "@apple/cktool.database";
 import {CKToolClientInitParams} from "../CKToolAPI/CKToolClient";
+import {CKModel} from "../CKModel/CKModel";
 
 export interface YraInitParams {
 
@@ -14,16 +14,10 @@ export interface YraInitParams {
     teamId: string;
     managementToken: string;
     userTokenAuth?: string;
-
-    // CKWebServiceAPI InitParams
-    keyId: string;
-    privateKeyPath?: string;
-    privateKeyContents?: Buffer;
 }
 
 class YraAPI {
     ckToolAPI: CKToolAPI;
-    ckWebServiceAPI: CKWebServiceAPI;
 
     constructor(initParams: YraInitParams) {
         let ckToolClientInitParams: CKToolClientInitParams = {
@@ -34,17 +28,9 @@ class YraAPI {
             managementToken: initParams.managementToken,
             userTokenAuth: initParams.userTokenAuth
         };
-        this.ckToolAPI = new CKToolAPI(ckToolClientInitParams);
 
-        let ckWebServiceAPIInitParams: CKWebServiceInitParams = {
-            containerId: initParams.containerId,
-            keyId: initParams.keyId,
-            privateKeyPath: initParams.privateKeyPath,
-            privateKeyContents: initParams.privateKeyContents,
-            environment: initParams.environment,
-            databaseType: initParams.databaseType
-        }
-        this.ckWebServiceAPI = new CKWebServiceAPI(ckWebServiceAPIInitParams);
+        this.ckToolAPI = new CKToolAPI(ckToolClientInitParams);
+        CKModel.setRecordManager(this.ckToolAPI.recordOp);
     }
 }
 

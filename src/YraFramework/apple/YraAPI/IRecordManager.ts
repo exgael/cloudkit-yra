@@ -30,14 +30,13 @@ export interface IRecordManager {
      * - **DocumentedResponseError**: Thrown if the server returns any HTTP status code in the range of 400 to 599 that is not specifically handled.
      * - **FetchError**: Thrown if there is an issue with the network request, with a reference to the request object available for examination.
      *
-     * @param record The `ICKRecord` object containing the details of the new record, structured according to the CloudKit's expected format.
-     * @param zoneName Optional. Specifies the database zone name where the record should be created. Defaults to the client's default zone if not specified.
      * @returns A promise that, when successful, resolves with an object containing:
      * - `statusCode`: HTTP status code 201, indicating successful creation.
      * - `description`: A descriptive message about the operation result.
      * - `result`: A `CKDBRecordResponse` object detailing the newly created record.
      * If the operation fails, the promise rejects with an error detailing the issue.
      * @throws {Error} Captures any errors related to the operation, enhancing traceability and debuggability.
+     * @param params
      */
     createRecord(params: CreateRecordParams): Promise<CreateRecordResponse>;
     /**
@@ -61,11 +60,9 @@ export interface IRecordManager {
      * - **ValidationError**: Thrown if the input parameters to the method are incorrect.
      * - **FetchError**: Thrown if there is an issue with the network request, with a reference to the request object available for examination.
      *
-     * @param recordName The unique name of the record to retrieve.
-     * @param requestedFields Optional array of strings specifying which fields to return in the response. If undefined, all fields are returned.
-     * @param zoneName Optional zone name within the database from which the record should be retrieved. Defaults to "_defaultZone" if not specified.
      * @returns A promise that, when resolved, provides a detailed response including the status code, a description of the operation, and the record details, or rejects with an error if the operation fails.
      * @throws {Error} Captures any errors related to the operation, enhancing traceability and debuggability.
+     * @param params
      */
     getRecord(params: GetRecordParams): Promise<GetRecordResponse>;
     /**
@@ -82,10 +79,9 @@ export interface IRecordManager {
      * - **FetchError**: Thrown if there is an issue with the network request, with the ability to examine the underlying cause via the request object.
      * - **ValidationError**: Thrown if the input parameters, such as the record name or zone name, are incorrect.
      *
-     * @param recordName The unique name of the record to be deleted.
-     * @param zoneName Optional. Specifies the database zone from which the record should be deleted. Defaults to the client's default zone if not specified.
      * @returns A promise that, when resolved, provides a detailed response from the server, including status codes and any additional metadata about the deletion process. If the operation fails, the promise rejects with an error detailing the issue encountered.
      * @throws {Error} Represents errors that occurred during the operation, including detailed information for debugging and error handling.
+     * @param params
      */
     deleteRecord(params: DeleteRecordParams): Promise<DeleteRecordResponse>;
     /**
@@ -103,16 +99,13 @@ export interface IRecordManager {
      * - **ValidationError**: Thrown if the `resultsLimit` is greater than 200 or if other input parameters are incorrect.
      * - **FetchError**: Thrown if there is a network request problem, with references available for debugging.
      *
-     * @param recordType The type of records to be deleted.
-     * @param filters An array of `CKDBQueryFilter` objects that specify the criteria for deleting records.
-     * @param resultsLimit The maximum number of records to be deleted in a single operation. Must not exceed 200.
-     * @param zoneName Optional. Specifies the database zone from which the records should be deleted. Defaults to the client's default zone if not specified.
      * @returns A promise that, when resolved, provides:
      * - `statusCode`: HTTP status code 200, indicating a successful operation.
      * - `description`: Descriptive text summarizing the batch delete result.
      * - `result`: A `CKDBPagedBatchDeleteResponse` object detailing the records deleted and containing any continuation token for further deletions.
      * If the operation fails, the promise rejects with an error detailing the encountered issue.
      * @throws {Error} Captures any errors related to the operation, providing context for debugging and handling.
+     * @param params
      */
     deleteRecordsByQuery(params: DeleteRecordsByQueryParams): Promise<DeleteRecordsByQueryResponse>;
     /**
@@ -125,10 +118,9 @@ export interface IRecordManager {
      * - **ValidationError**: If input parameters are incorrect, such as invalid record names or incorrect zone configuration.
      * - **FetchError**: If there is an issue with the network request. The underlying request object can be examined for more details.
      *
-     * @param recordNames Array of string names of the records to look up.
-     * @param zoneName Optional. The database zone name from which the records should be fetched. Defaults to the client's default zone if not specified.
      * @returns A promise that resolves to a `CKDBLookupRecordsResponse` detailing the results of the fetch operation or rejects with an error if the operation fails.
      * @throws {Error} Captures any errors related to the operation, including details for debugging and error handling.
+     * @param params
      */
     lookupRecords(params: LookupRecordsParams): Promise<LookupRecordsResponse>;
     /**
@@ -151,10 +143,9 @@ export interface IRecordManager {
      * - **ValidationError**: Thrown if input parameters, such as the sync token or zone name, are incorrect.
      * - **FetchError**: Thrown if there is an issue with the network request, with a reference to the request object available for examination.
      *
-     * @param body The `CKDBRecordChangesRequestBody` object containing details for the record changes query.
-     * @param zoneName Optional. Specifies the database zone from which to fetch record changes. Defaults to the client's default zone if not specified.
      * @returns A promise that, when resolved, provides a detailed response including the status code, a description of the operation, and detailed results of the record changes, or rejects with an error if the operation fails.
      * @throws {Error} Captures any errors related to the operation, enhancing traceability and debuggability.
+     * @param params
      */
        queryRecordChanges(params: QueryRecordChangesParams): Promise<QueryRecordChangesResponse>;
     /**
@@ -177,13 +168,9 @@ export interface IRecordManager {
      * - **ValidationError**: Thrown if the input parameters, such as the `resultsLimit` or `filters`, are incorrect or incomplete.
      * - **FetchError**: Thrown if there is an issue with the network request, with detailed information available for debugging.
      *
-     * @param recordType The type of the records to be queried.
-     * @param filters Array of `CKDBQueryFilter` specifying conditions each record must meet to be included in the result.
-     * @param sorts Array of `CKDBQuerySort` specifying how the fetched records should be ordered.
-     * @param resultsLimit The maximum number of records to return in one call; cannot exceed a certain limit (e.g., 200).
-     * @param zoneName Optional. Specifies the database zone from which the records should be fetched. Defaults to the client's default zone if not specified.
      * @returns A promise that, when resolved, provides a detailed response including the status code, a description of the operation, and the records fetched, or rejects with an error if the operation fails.
      * @throws {Error} Represents errors that occurred during the operation, providing detailed information for debugging and error handling.
+     * @param params
      */
     queryRecords(params: QueryRecordsParams): Promise<QueryRecordsResponse>;
     /**
@@ -206,13 +193,9 @@ export interface IRecordManager {
      * - **ValidationError**: Thrown if input parameters, such as the record name or field updates, are incorrect or incomplete.
      * - **FetchError**: Thrown if there is an issue with the network request, with details available for further examination.
      *
-     * @param recordName The unique name of the record to be updated.
-     * @param recordType The type of the record, which determines the schema to apply the updates.
-     * @param recordChangeTag The
-     * @param fields Dictionary of field updates where each key is a field name and each value is a `CKDBRecordFieldValue` representing the new value for that field.
-     * @param zoneName Optional. Specifies the database zone from which the record should be updated. Defaults to the client's default zone if not specified.
      * @returns A promise that resolves with detailed information about the updated record or rejects with an error if the operation fails.
      * @throws {Error} Represents errors that occurred during the operation, providing detailed information for debugging and error handling.
+     * @param params
      */
     updateRecord(params: UpdateRecordParams): Promise<UpdateRecordResponse>;
 }
