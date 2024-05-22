@@ -1,5 +1,11 @@
 # cloudkit-yra
 
+## 0.3.3
+
+### Patch Changes
+
+- 321c834: Specializing to PromiseAPI for now
+
 ## 0.3.2
 
 ### Patch Changes
