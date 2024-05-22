@@ -1,5 +1,11 @@
 # cloudkit-yra
 
+## 0.3.4
+
+### Patch Changes
+
+- 1b72b05: readme update
+
 ## 0.3.3
 
 ### Patch Changes
